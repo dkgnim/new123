@@ -13,8 +13,10 @@ pipeline{
             
         stage ('Build docker image') {
             steps {
-                
-                sh 'cd /var/lib/jenkins/workspace/mvn/target/ && docker build --tag=myapp' 
+                  
+                sh 'cd /var/lib/jenkins/workspace/mvn/target/'
+				git 'https://github.com/madgraycat/jenkins_ex.git' 
+				sh 'sudo docker run - myapp'
             }
         }    
         }
