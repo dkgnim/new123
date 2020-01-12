@@ -1,6 +1,7 @@
 pipeline{
     agent {
         docker {image 'myimage'
+        args '-u root --privileged -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages{
@@ -15,8 +16,9 @@ pipeline{
             steps {
                   
                 sh 'cd /var/lib/jenkins/workspace/mvn/target/'
+                
 				git 'https://github.com/madgraycat/jenkins_ex.git' 
-				sh 'sudo docker run - myapp'
+				sh 'sudo docker build -t myapp .'
             }
         }    
         }
